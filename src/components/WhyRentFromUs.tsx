@@ -1,4 +1,5 @@
 import { CheckCircle, Clock, DollarSign, Wrench } from 'lucide-react'
+import { Typography } from '@/components/ui/Typography'
 
 const benefits = [
   {
@@ -28,7 +29,13 @@ const WhyRentFromUs = () => {
     <section className="bg-base-100 py-8 sm:py-16 lg:py-24">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center">
-          <h2 className="mb-3 text-2xl font-bold sm:mb-4 sm:text-3xl lg:text-4xl">Why Rent From Us?</h2>
+          <Typography 
+            variant="section-title" 
+            className="mb-3 sm:mb-4"
+          >
+            Why Rent From Us?
+          </Typography>
+          
           <div className="grid gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-4 lg:gap-8">
             {benefits.map((benefit, index) => (
               <div 
@@ -38,12 +45,18 @@ const WhyRentFromUs = () => {
                 <div className="mb-1 flex justify-center text-primary sm:mb-2">
                   {benefit.icon}
                 </div>
-                <h3 className="text-lg font-bold sm:text-xl">
+                <Typography 
+                  variant="card-title"
+                  className="text-lg font-bold sm:text-xl"
+                >
                   {benefit.title}
-                </h3>
-                <p className="text-sm text-base-content/80 sm:text-base">
+                </Typography>
+                <Typography 
+                  variant="body"
+                  className="text-sm text-base-content/80 sm:text-base"
+                >
                   {benefit.description}
-                </p>
+                </Typography>
               </div>
             ))}
           </div>

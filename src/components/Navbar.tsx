@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { useState } from 'react'
+import { Typography } from '@/components/ui/Typography'
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -37,7 +38,7 @@ const Navbar = () => {
           </Link>
         </div>
 
-        {/* Mobile menu button - Even bigger touch target */}
+        {/* Mobile menu button */}
         <div className="flex-none lg:hidden">
           <button
             className="btn-ghost btn h-16 w-16 rounded-full"
@@ -65,18 +66,38 @@ const Navbar = () => {
         {/* Desktop menu */}
         <div className="hidden lg:flex lg:flex-1 lg:justify-center">
           <ul className="menu menu-horizontal px-1 gap-2">
-            <li><Link href="/" className="text-lg font-medium">Home</Link></li>
-            <li><Link href="/about" className="text-lg font-medium">About</Link></li>
+            <li>
+              <Typography as="span" variant="body" className="text-lg font-medium">
+                <Link href="/">Home</Link>
+              </Typography>
+            </li>
+            <li>
+              <Typography as="span" variant="body" className="text-lg font-medium">
+                <Link href="/about">About</Link>
+              </Typography>
+            </li>
             <li>
               <details>
                 <summary className="text-lg font-medium">Services</summary>
                 <ul className="p-2 bg-base-100 rounded-box shadow-lg">
-                  <li><Link href="/services/rental">Rental</Link></li>
-                  <li><Link href="/services/installation">Installation</Link></li>
+                  <li>
+                    <Typography as="span" variant="body">
+                      <Link href="/services/rental">Rental</Link>
+                    </Typography>
+                  </li>
+                  <li>
+                    <Typography as="span" variant="body">
+                      <Link href="/services/installation">Installation</Link>
+                    </Typography>
+                  </li>
                 </ul>
               </details>
             </li>
-            <li><Link href="/contact" className="text-lg font-medium">Contact</Link></li>
+            <li>
+              <Typography as="span" variant="body" className="text-lg font-medium">
+                <Link href="/contact">Contact</Link>
+              </Typography>
+            </li>
           </ul>
         </div>
 
@@ -87,12 +108,14 @@ const Navbar = () => {
             className="btn btn-accent text-accent-content font-bold"
             aria-label="Get a quote"
           >
-            Get a Quote
+            <Typography as="span" variant="body" className="font-bold">
+              Get a Quote
+            </Typography>
           </Link>
         </div>
       </div>
 
-      {/* Mobile menu dropdown - Height based on content */}
+      {/* Mobile menu dropdown */}
       <div 
         className={`fixed inset-x-0 top-16 z-40 transform bg-primary transition-transform duration-300 ease-in-out lg:hidden ${
           isMenuOpen ? 'translate-x-0' : 'translate-x-full'
@@ -100,15 +123,28 @@ const Navbar = () => {
       >
         <nav className="max-h-[calc(100vh-4rem)] overflow-y-auto">
           <ul className="menu menu-lg p-4 pt-8 space-y-2">
-            <li><Link href="/" className="text-xl text-primary-content" onClick={handleMenuToggle}>Home</Link></li>
-            <li><Link href="/about" className="text-xl text-primary-content" onClick={handleMenuToggle}>About</Link></li>
+            {['Home', 'About'].map((item) => (
+              <li key={item}>
+                <Typography 
+                  as={Link} 
+                  href={`/${item.toLowerCase()}`} 
+                  variant="body"
+                  className="text-xl text-primary-content"
+                  onClick={handleMenuToggle}
+                >
+                  {item}
+                </Typography>
+              </li>
+            ))}
             <li>
               <button 
                 onClick={handleServicesToggle}
                 className="text-xl text-primary-content justify-between"
                 aria-expanded={isServicesOpen}
               >
-                Services
+                <Typography variant="body" className="text-xl">
+                  Services
+                </Typography>
                 <svg
                   className={`w-4 h-4 transition-transform ${isServicesOpen ? 'rotate-180' : ''}`}
                   fill="none"
@@ -119,38 +155,46 @@ const Navbar = () => {
                 </svg>
               </button>
               <ul className={`menu menu-lg ${isServicesOpen ? 'block' : 'hidden'}`}>
-                <li>
-                  <Link 
-                    href="/services/rental" 
-                    className="text-lg text-primary-content pl-4"
-                    onClick={handleMenuToggle}
-                  >
-                    Rental
-                  </Link>
-                </li>
-                <li>
-                  <Link 
-                    href="/services/installation" 
-                    className="text-lg text-primary-content pl-4"
-                    onClick={handleMenuToggle}
-                  >
-                    Installation
-                  </Link>
-                </li>
+                {['Rental', 'Installation'].map((service) => (
+                  <li key={service}>
+                    <Typography 
+                      as={Link}
+                      href={`/services/${service.toLowerCase()}`}
+                      variant="body"
+                      className="text-lg text-primary-content pl-4"
+                      onClick={handleMenuToggle}
+                    >
+                      {service}
+                    </Typography>
+                  </li>
+                ))}
               </ul>
             </li>
-            <li><Link href="/contact" className="text-xl text-primary-content" onClick={handleMenuToggle}>Contact</Link></li>
+            <li>
+              <Typography 
+                as={Link}
+                href="/contact"
+                variant="body"
+                className="text-xl text-primary-content"
+                onClick={handleMenuToggle}
+              >
+                Contact
+              </Typography>
+            </li>
             
-            {/* CTA Button - Mobile optimization */}
+            {/* CTA Button - Mobile */}
             <li className="mt-8 mb-4">
-              <Link 
-                href="/quote" 
-                className="btn-accent btn h-14 w-full justify-center text-center text-xl font-bold text-accent-content transition-transform active:scale-95"
+              <Typography 
+                as={Link}
+                href="/quote"
+                variant="body"
+                className="btn-accent btn h-14 w-full justify-center text-center text-xl font-bold 
+                  text-accent-content transition-transform active:scale-95"
                 onClick={handleMenuToggle}
                 aria-label="Get a quote"
               >
                 Get a Quote
-              </Link>
+              </Typography>
             </li>
           </ul>
         </nav>

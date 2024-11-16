@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { Typography } from '@/components/ui/Typography';
 
 type FormData = {
   // Contact Info
@@ -141,16 +142,14 @@ const QuoteForm = () => {
     }
   };
 
-  const steps = [
-    { number: 1, label: "Contact Info" },
-    { number: 2, label: "Ramp Details" },
-    { number: 3, label: "Review" }
-  ];
-
   const renderStepIndicator = () => (
     <div className="flex items-center justify-center mb-4">
       <div className="flex items-center gap-2">
-        {steps.map(({ number, label }) => (
+        {[
+          { number: 1, label: "Contact Info" },
+          { number: 2, label: "Ramp Details" },
+          { number: 3, label: "Review" }
+        ].map(({ number, label }) => (
           <div key={number} className="flex items-center">
             <div className="flex flex-col items-center">
               <div className={`
@@ -166,15 +165,17 @@ const QuoteForm = () => {
                 {step > number ? '✓' : number}
               </div>
               
-              <span className={`
-                mt-1 text-sm font-medium transition-colors duration-200
-                ${step === number ? 'text-primary' : 'text-base-content/70'}
-              `}>
+              <Typography 
+                variant="small"
+                className={`mt-1 font-medium ${
+                  step === number ? 'text-primary' : 'text-base-content/70'
+                }`}
+              >
                 {label}
-              </span>
+              </Typography>
             </div>
 
-            {number < steps.length && (
+            {number < 3 && (
               <div className={`
                 h-0.5 w-8 mx-2 transition-all duration-200
                 ${step > number ? 'bg-success' : 'bg-base-200'}
@@ -194,7 +195,9 @@ const QuoteForm = () => {
   ) => (
     <div className="form-control w-full">
       <label className="label py-1">
-        <span className="label-text text-base font-medium">{label}</span>
+        <Typography variant="body" className="font-medium">
+          {label}
+        </Typography>
       </label>
       <input
         type={type}
@@ -215,7 +218,9 @@ const QuoteForm = () => {
       />
       {errors[field] && (
         <label className="label">
-          <span className="label-text-alt text-error">{errors[field]}</span>
+          <Typography variant="small" className="text-error">
+            {errors[field]}
+          </Typography>
         </label>
       )}
     </div>
@@ -239,7 +244,9 @@ const QuoteForm = () => {
   ) => (
     <div className="form-control w-full">
       <label className="label">
-        <span className="label-text text-base font-medium">{label}</span>
+        <Typography variant="body" className="font-medium">
+          {label}
+        </Typography>
       </label>
       <select
         className={`
@@ -269,7 +276,9 @@ const QuoteForm = () => {
       </select>
       {errors[field] && (
         <label className="label">
-          <span className="label-text-alt text-error">{errors[field]}</span>
+          <Typography variant="small" className="text-error">
+            {errors[field]}
+          </Typography>
         </label>
       )}
     </div>
@@ -286,7 +295,9 @@ const QuoteForm = () => {
 
       <div className="form-control">
         <label className="label">
-          <span className="label-text text-sm sm:text-base font-medium">Do you know the required ramp length?</span>
+          <Typography variant="body" className="font-medium">
+            Do you know the required ramp length?
+          </Typography>
         </label>
         <div className="flex flex-col sm:flex-row gap-2 sm:gap-8">
           <label className="flex items-center gap-3 p-2 sm:p-0 hover:bg-base-200 rounded-lg sm:hover:bg-transparent">
@@ -296,7 +307,7 @@ const QuoteForm = () => {
               checked={formData.knowRampLength}
               onChange={() => setFormData({ ...formData, knowRampLength: true })}
             />
-            <span className="text-sm sm:text-base">Yes</span>
+            <Typography variant="body">Yes</Typography>
           </label>
           <label className="flex items-center gap-3 p-2 sm:p-0 hover:bg-base-200 rounded-lg sm:hover:bg-transparent">
             <input
@@ -305,7 +316,7 @@ const QuoteForm = () => {
               checked={!formData.knowRampLength}
               onChange={() => setFormData({ ...formData, knowRampLength: false })}
             />
-            <span className="text-sm sm:text-base">No</span>
+            <Typography variant="body">No</Typography>
           </label>
         </div>
         {formData.knowRampLength && (
@@ -321,7 +332,9 @@ const QuoteForm = () => {
             />
             {errors.estimatedRampLength && (
               <label className="label">
-                <span className="label-text-alt text-error">{errors.estimatedRampLength}</span>
+                <Typography variant="small" className="text-error">
+                  {errors.estimatedRampLength}
+                </Typography>
               </label>
             )}
           </div>
@@ -330,7 +343,9 @@ const QuoteForm = () => {
 
       <div className="form-control">
         <label className="label">
-          <span className="label-text text-sm sm:text-base font-medium">Do you know the rental duration?</span>
+          <Typography variant="body" className="font-medium">
+            Do you know the rental duration?
+          </Typography>
         </label>
         <div className="flex flex-col sm:flex-row gap-2 sm:gap-8">
           <label className="flex items-center gap-3 p-2 sm:p-0 hover:bg-base-200 rounded-lg sm:hover:bg-transparent">
@@ -340,7 +355,7 @@ const QuoteForm = () => {
               checked={formData.knowRentalDuration}
               onChange={() => setFormData({ ...formData, knowRentalDuration: true })}
             />
-            <span className="text-sm sm:text-base">Yes</span>
+            <Typography variant="body">Yes</Typography>
           </label>
           <label className="flex items-center gap-3 p-2 sm:p-0 hover:bg-base-200 rounded-lg sm:hover:bg-transparent">
             <input
@@ -349,7 +364,7 @@ const QuoteForm = () => {
               checked={!formData.knowRentalDuration}
               onChange={() => setFormData({ ...formData, knowRentalDuration: false })}
             />
-            <span className="text-sm sm:text-base">No</span>
+            <Typography variant="body">No</Typography>
           </label>
         </div>
         {formData.knowRentalDuration && (
@@ -365,7 +380,9 @@ const QuoteForm = () => {
             />
             {errors.estimatedRentalDuration && (
               <label className="label">
-                <span className="label-text-alt text-error">{errors.estimatedRentalDuration}</span>
+                <Typography variant="small" className="text-error">
+                  {errors.estimatedRentalDuration}
+                </Typography>
               </label>
             )}
           </div>
@@ -374,7 +391,9 @@ const QuoteForm = () => {
 
       <div className="form-control">
         <label className="label">
-          <span className="label-text text-sm sm:text-base font-medium">Which mobility aids will be used?</span>
+          <Typography variant="body" className="font-medium">
+            Which mobility aids will be used?
+          </Typography>
         </label>
         <div className={`space-y-1 ${errors.mobilityAids ? 'border border-error rounded-lg p-2' : ''}`}>
           {['Wheelchair', 'Walker', 'Motorized scooter', 'None', 'Other'].map((aid) => (
@@ -394,13 +413,15 @@ const QuoteForm = () => {
                   }
                 }}
               />
-              <span className="text-sm sm:text-base">{aid}</span>
+              <Typography variant="body">{aid}</Typography>
             </label>
           ))}
         </div>
         {errors.mobilityAids && (
           <label className="label">
-            <span className="label-text-alt text-error">Please select at least one mobility aid</span>
+            <Typography variant="small" className="text-error">
+              Please select at least one mobility aid
+            </Typography>
           </label>
         )}
       </div>
@@ -410,28 +431,32 @@ const QuoteForm = () => {
   const renderConfirmation = () => (
     <div className="space-y-4">
       <div className="bg-base-200 p-4 rounded-lg space-y-3">
-        <h3 className="text-lg font-semibold">Contact Information</h3>
+        <Typography variant="h3" className="font-semibold">
+          Contact Information
+        </Typography>
         <div className="grid gap-2">
-          <p><span className="font-medium">Name:</span> {formData.name}</p>
-          <p><span className="font-medium">Email:</span> {formData.email}</p>
-          <p><span className="font-medium">Phone:</span> {formData.phone}</p>
-          <p><span className="font-medium">Address:</span> {formData.address}</p>
+          <p><Typography variant="body" className="font-medium">Name:</Typography> {formData.name}</p>
+          <p><Typography variant="body" className="font-medium">Email:</Typography> {formData.email}</p>
+          <p><Typography variant="body" className="font-medium">Phone:</Typography> {formData.phone}</p>
+          <p><Typography variant="body" className="font-medium">Address:</Typography> {formData.address}</p>
         </div>
       </div>
 
       <div className="bg-base-200 p-4 rounded-lg space-y-3">
-        <h3 className="text-lg font-semibold">Ramp Details</h3>
+        <Typography variant="h3" className="font-semibold">
+          Ramp Details
+        </Typography>
         <div className="grid gap-2">
-          <p><span className="font-medium">Install Timeframe:</span> {formData.installTimeframe}</p>
-          <p><span className="font-medium">Know Ramp Length:</span> {formData.knowRampLength ? 'Yes' : 'No'}</p>
+          <p><Typography variant="body" className="font-medium">Install Timeframe:</Typography> {formData.installTimeframe}</p>
+          <p><Typography variant="body" className="font-medium">Know Ramp Length:</Typography> {formData.knowRampLength ? 'Yes' : 'No'}</p>
           {formData.knowRampLength && (
-            <p><span className="font-medium">Estimated Ramp Length:</span> {formData.estimatedRampLength} feet</p>
+            <p><Typography variant="body" className="font-medium">Estimated Ramp Length:</Typography> {formData.estimatedRampLength} feet</p>
           )}
-          <p><span className="font-medium">Know Rental Duration:</span> {formData.knowRentalDuration ? 'Yes' : 'No'}</p>
+          <p><Typography variant="body" className="font-medium">Know Rental Duration:</Typography> {formData.knowRentalDuration ? 'Yes' : 'No'}</p>
           {formData.knowRentalDuration && (
-            <p><span className="font-medium">Estimated Rental Duration:</span> {formData.estimatedRentalDuration} months</p>
+            <p><Typography variant="body" className="font-medium">Estimated Rental Duration:</Typography> {formData.estimatedRentalDuration} months</p>
           )}
-          <p><span className="font-medium">Mobility Aids:</span> {formData.mobilityAids.join(', ')}</p>
+          <p><Typography variant="body" className="font-medium">Mobility Aids:</Typography> {formData.mobilityAids.join(', ')}</p>
         </div>
       </div>
     </div>
@@ -490,7 +515,7 @@ const QuoteForm = () => {
               {isSubmitting ? (
                 <>
                   <span className="loading loading-spinner loading-sm"></span>
-                  <span>Submitting...</span>
+                  <Typography variant="body">Submitting...</Typography>
                 </>
               ) : (
                 'Submit Quote Request'

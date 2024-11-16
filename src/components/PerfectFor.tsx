@@ -1,3 +1,5 @@
+import { Typography } from '@/components/ui/Typography'
+
 const situations = [
   {
     title: "Recovery & Rehabilitation",
@@ -22,11 +24,20 @@ const PerfectFor = () => {
     <section className="bg-base-100 py-8 sm:py-16 lg:py-24">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-4xl text-center">
-          <h2 className="mb-3 text-2xl font-bold sm:mb-4 sm:text-3xl lg:text-4xl">Looking for a Wheelchair Ramp?</h2>
-          <p className="mb-8 text-base text-base-content/80 sm:mb-12 sm:text-lg">
+          <Typography 
+            variant="section-title" 
+            className="mb-3 sm:mb-4"
+          >
+            Looking for a Wheelchair Ramp?
+          </Typography>
+          
+          <Typography 
+            variant="section-subtitle" 
+            className="mb-8 sm:mb-12"
+          >
             You&apos;re probably finding out it&apos;s not as easy or affordable as you hoped. 
             We make renting simple and hassle-free.
-          </p>
+          </Typography>
           
           <div className="grid gap-4 sm:gap-6 lg:grid-cols-2 lg:gap-8">
             {situations.map((situation, index) => (
@@ -34,18 +45,29 @@ const PerfectFor = () => {
                 key={index}
                 className="flex flex-col gap-2 rounded-lg bg-base-200 p-4 text-left shadow-lg sm:p-6"
               >
-                <h3 className="text-lg font-bold text-primary sm:text-xl">
+                <Typography 
+                  variant="card-title" 
+                  className="text-primary"
+                >
                   {situation.title}
-                </h3>
-                <p className="text-sm text-base-content/80 sm:text-base">
+                </Typography>
+                <Typography 
+                  variant="body" 
+                  className="text-base-content/80"
+                >
                   {situation.description}
-                </p>
+                </Typography>
               </div>
             ))}
           </div>
 
           <div className="mt-8 rounded-lg bg-primary/10 p-4 sm:mt-12 sm:p-8">
-            <h3 className="mb-3 text-lg font-bold sm:mb-4 sm:text-xl">Why Choose Renting?</h3>
+            <Typography 
+              variant="card-title" 
+              className="mb-3 sm:mb-4"
+            >
+              Why Choose Renting?
+            </Typography>
             <ul className="text-left text-base leading-relaxed sm:text-lg">
               <li className="mb-2">✓ Avoid thousands in upfront costs</li>
               <li className="mb-2">✓ Professional installation included</li>

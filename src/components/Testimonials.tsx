@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import { Star } from 'lucide-react'
+import { Typography } from '@/components/ui/Typography'
 
 const testimonials = [
   {
@@ -38,9 +39,12 @@ const Testimonials = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-4xl">
           <div className="mb-8 text-center sm:mb-12">
-            <h2 className="mb-3 text-2xl font-bold sm:mb-4 sm:text-3xl lg:text-4xl">
+            <Typography 
+              variant="section-title"
+              className="mb-3 sm:mb-4"
+            >
               Customer Testimonials
-            </h2>
+            </Typography>
             
             <div className="mb-4 flex items-center justify-center gap-2 sm:mb-6">
               <Image 
@@ -50,7 +54,9 @@ const Testimonials = () => {
                 height={16}
                 className="h-4 w-auto sm:h-5"
               />
-              <span className="text-sm font-medium sm:text-base">Google Reviews</span>
+              <Typography variant="small" className="font-medium">
+                Google Reviews
+              </Typography>
             </div>
 
             <div className="mb-3 flex items-center justify-center gap-0.5 sm:mb-4 sm:gap-1">
@@ -62,9 +68,9 @@ const Testimonials = () => {
               ))}
             </div>
 
-            <p className="text-base font-bold sm:text-lg">
+            <Typography variant="body" className="font-bold">
               5.0 Stars | 21 reviews
-            </p>
+            </Typography>
           </div>
 
           <div className="grid gap-3 sm:gap-4 md:grid-cols-2 lg:gap-6">
@@ -78,16 +84,16 @@ const Testimonials = () => {
                     {testimonial.name[0]}
                   </div>
                   <div className="min-w-0 flex-1">
-                    <h3 className="truncate text-sm font-bold sm:text-base">
+                    <Typography variant="card-title" className="truncate">
                       {testimonial.name}
-                    </h3>
-                    <p className="text-xs text-base-content/60 sm:text-sm">
+                    </Typography>
+                    <Typography variant="small" className="text-base-content/60">
                       {testimonial.location}
-                    </p>
+                    </Typography>
                   </div>
-                  <div className="text-xs text-base-content/60 sm:text-sm">
+                  <Typography variant="small" className="text-base-content/60">
                     {testimonial.date}
-                  </div>
+                  </Typography>
                 </div>
 
                 <div className="flex gap-0.5">
@@ -99,9 +105,9 @@ const Testimonials = () => {
                   ))}
                 </div>
 
-                <p className="text-xs text-base-content/80 sm:text-sm lg:text-base">
+                <Typography variant="body" className="text-base-content/80">
                   {testimonial.text}
-                </p>
+                </Typography>
               </div>
             ))}
           </div>

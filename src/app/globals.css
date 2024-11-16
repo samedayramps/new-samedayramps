@@ -7,8 +7,58 @@
   --foreground: #171717;
 }
 
+@layer base {
+  /* Base typography styles */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold tracking-tight;
+  }
+
+  h1 {
+    @apply text-heading-sm md:text-heading-base lg:text-heading-lg xl:text-heading-xl;
+  }
+
+  h2 {
+    @apply text-2xl md:text-3xl lg:text-4xl;
+  }
+
+  h3 {
+    @apply text-xl md:text-2xl lg:text-3xl;
+  }
+
+  p {
+    @apply text-base md:text-lg leading-relaxed;
+  }
+
+  /* Component typography */
+  .section-title {
+    @apply text-2xl font-bold md:text-3xl lg:text-4xl;
+  }
+
+  .section-subtitle {
+    @apply text-lg md:text-xl text-base-content/80;
+  }
+
+  .card-title {
+    @apply text-lg font-semibold md:text-xl;
+  }
+
+  .nav-link {
+    @apply text-base font-medium md:text-lg;
+  }
+
+  .button-text {
+    @apply text-base font-semibold md:text-lg;
+  }
+}
+
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  @apply text-base-content bg-base-100 antialiased;
+  font-feature-settings: "ss01", "ss02", "cv01", "cv02";
+}
+
+/* Mobile-optimized text rendering */
+@media (max-width: 640px) {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
 }
