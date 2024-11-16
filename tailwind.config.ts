@@ -7,6 +7,7 @@ export default {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  darkMode: ['class', '[data-mode="dark"]'],
   theme: {
     extend: {
       backgroundImage: {
@@ -51,7 +52,7 @@ export default {
           "warning": "#f59e0b",
           "error": "#ef4444",
 
-          // Component settings (keeping mobile-optimized values)
+          // Component settings
           "--rounded-box": "0.75rem",
           "--rounded-btn": "0.5rem",
           "--rounded-badge": "1.5rem",
@@ -70,7 +71,7 @@ export default {
         },
       },
     ],
-    darkTheme: "mytheme",
+    darkTheme: false,
     base: true,
     utils: true,
     rtl: false,
