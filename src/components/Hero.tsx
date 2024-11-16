@@ -1,13 +1,28 @@
 'use client';
 
 import Image from 'next/image'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import Link from 'next/link'
 
 const heroImages = [
-  '/hero1.webp',
-  '/hero2.webp',
-  '/hero3.webp'
+  {
+    src: '/hero1.webp',
+    alt: "Wheelchair ramp installation service",
+    width: 1920,
+    height: 1080
+  },
+  {
+    src: '/hero2.webp',
+    alt: "Professional ramp rental and setup",
+    width: 1920,
+    height: 1080
+  },
+  {
+    src: '/hero3.webp',
+    alt: "Temporary wheelchair ramp solutions",
+    width: 1920,
+    height: 1080
+  }
 ]
 
 const Hero = () => {
@@ -22,26 +37,32 @@ const Hero = () => {
     return () => clearInterval(timer)
   }, [])
 
+  const handleImageLoad = useCallback((e: React.SyntheticEvent<HTMLImageElement>) => {
+    e.currentTarget.classList.remove('opacity-0')
+  }, [])
+
   return (
-    <section className="relative flex h-screen w-full items-center justify-center overflow-hidden">
+    <section className="relative flex min-h-[600px] w-full items-center justify-center overflow-hidden lg:h-screen">
       {/* Hero Images */}
       {heroImages.map((image, index) => (
         <div
-          key={image}
+          key={image.src}
           className={`absolute inset-0 transition-opacity duration-1000 ${
             index === currentImage ? 'opacity-100' : 'opacity-0'
           }`}
         >
           <Image
-            src={image}
-            alt=""
+            src={image.src}
+            alt={image.alt}
             fill
             priority={index === 0}
-            className="object-cover object-center"
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
-            quality={90}
+            className="object-cover object-center opacity-0 transition-opacity duration-500"
+            sizes="100vw"
+            quality={85}
+            onLoad={handleImageLoad}
+            width={image.width}
+            height={image.height}
           />
-          {/* Gradient overlay for better text readability */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/50 to-black/30" />
         </div>
       ))}
